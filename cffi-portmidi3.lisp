@@ -1,4 +1,5 @@
-;; modified by jh-midi 2025
+;;; modified by jh-midi 2025
+;;; tested with sbcl 
 ;;; **********************************************************************
 ;;; Copyright (C) 2005 Heinrich Taube, <taube (at) uiuc (dot) edu>
 ;;;
