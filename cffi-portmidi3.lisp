@@ -165,7 +165,7 @@
 ;;; utils
 ;;;
 
-
+(defvar host-error-text (make-string 256 :initial-element #\*))
 
 (defmacro with-pm-error (form)
   (let ((v (gensym)))
