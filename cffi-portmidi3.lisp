@@ -167,6 +167,17 @@
 ;;; utils
 ;;;
 
+(defun Started ()
+  (let ((res (pt-started)))
+    (if (= res false) nil t)))
+
+(defun Start ()
+  ;; NB: This has to be called before opening output or input.
+  ;; it seems that if its called 2x we get an error.
+  (unless (Started)
+    (pt-start 1 (cffi:null-pointer) (cffi:null-pointer))))
+
+
 (defvar host-error-text (make-string 256 :initial-element #\*))
 
 (defmacro with-pm-error (form)
@@ -388,16 +399,7 @@
 
 ;;; porttime.h
 
-(defun Started ()
-  (let ((res (pt-started)))
-    (if (= res false) nil t)))
 
-(defun Start ()
-  ;; NB: This has to be called before opening output or input.
-  ;; it seems that if its called 2x we get an error.
-  (unless (Started)
-    (with-pm-error (pt-start 1 (cffi:null-pointer) (cffi:null-pointer))))
-  (values))
 
 (defun Stop ()
   (when (Started)
