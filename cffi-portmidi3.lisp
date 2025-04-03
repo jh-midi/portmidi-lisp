@@ -1,5 +1,5 @@
 ;;; modified by jh-midi 2025
-;;; tested with sbcl 
+;;; tested with sbcl and ccl
 ;;; **********************************************************************
 ;;; Copyright (C) 2005 Heinrich Taube, <taube (at) uiuc (dot) edu>
 ;;;
