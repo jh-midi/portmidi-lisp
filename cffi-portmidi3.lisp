@@ -24,7 +24,7 @@
   (let ((type #+(or darwin macos macosx) "dylib"
               #+(or linux linux-target (and unix pc386) freebsd) "so"
               #+(or win32 microsoft-32 cygwin) "dll")
-        (paths (list "/usr/lib/" "/usr/local/lib/" *load-pathname*)))
+         (paths (list "/usr/lib/" "/usr/lib64/" "/usr/local/lib/" "/usr/local/lib64/"  *load-pathname*)))
     (loop for d in paths
        for p = (make-pathname :name "libportmidi" :type type 
                               :defaults d)
