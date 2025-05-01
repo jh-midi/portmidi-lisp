@@ -9,4 +9,4 @@ and also install quicklisp https://www.quicklisp.org/beta/  this is the simplest
 I have just tested on sbcl but this should work with all Lisp implementation with CFFI port.
 
 
-Work in progress
+Work in progress ... adding writesysex
