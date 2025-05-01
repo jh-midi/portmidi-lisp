@@ -12,17 +12,12 @@ you have to look at the official portmidi doc
 
 Work in progress ... adding writesysex
 
-CL-USER> (load "cffi-portmidi3.lisp")
+CL-USER> (load "cffi-portmidi3.lisp")<br>
+CL-USER> (in-package :portmidi) <br>
+#<PACKAGE "PORTMIDI"> <br>
+PM> (getDeviceInfo)<br>
 
-CL-USER> (in-package :portmidi)
-
-CL-USER> (in-package :portmidi)
-
-#<PACKAGE "PORTMIDI">
-
-PM> (getDeviceInfo)
-
-((:ID 0 :NAME "Midi Through Port-0" :TYPE :OUTPUT :OPEN T)
+((:ID 0 :NAME "Midi Through Port-0" :TYPE :OUTPUT :OPEN T)<br>
  (:ID 1 :NAME "Midi Through Port-0" :TYPE :INPUT :OPEN NIL))
 
 PM> (defparameter midi-out (openoutput 0 100 0))
