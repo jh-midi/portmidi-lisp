@@ -10,3 +10,8 @@ I have just tested on sbcl but this should work with all Lisp implementation wit
 
 
 Work in progress ... adding writesysex
+
+(load "cffi-portmidi3.lisp")
+(in-package :portmidi)
+(getDeviceInfo)
+ ...
