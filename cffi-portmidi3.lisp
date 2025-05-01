@@ -24,7 +24,9 @@
   (let ((type #+(or darwin macos macosx) "dylib"
               #+(or linux linux-target (and unix pc386) freebsd) "so"
               #+(or win32 microsoft-32 cygwin) "dll")
-         (paths (list "/usr/lib/" "/usr/lib64/" "/usr/local/lib/" "/usr/local/lib64/"  *load-pathname*)))
+        (paths (list "/usr/lib/" "/usr/lib64/"
+		     "/usr/lib/x86_64-linux-gnu/"
+		     "/usr/local/lib/" "/usr/local/lib64/"  *load-pathname*)))
     (loop for d in paths
        for p = (make-pathname :name "libportmidi" :type type 
                               :defaults d)
@@ -273,7 +275,6 @@
   (with-pm-error (pm-terminate)))
 
 
-;;; not tested because I don't know how to have host error 
 (defun HasHostError (pms) 
   (pm-has-host-error pms))
 
@@ -393,9 +394,29 @@
 (defun WriteShort (pms when msg)
   (with-pm-error (pm-write-short pms when msg)))
 
-(defun WriteSysex (pms when string)
-  (cffi:with-foreign-string (ptr string)
-    (with-pm-error (pm-write-sys-ex pms when ptr))))
+#| (defparameter syx  (string-to-sysex  "F0 00 21
+         50 00 01 00
+ 01 01 01 04 02 F7"))
+|#
+(defun string-to-sysex (hex-string)
+  "allow multiple space and newline between hexa string "
+  (let* ((taille (length hex-string))
+	 (next1 0)
+	 (to-hex (loop while (<= next1 (- taille 1))
+		       collect
+		       (multiple-value-bind (hex next)
+			   (read-from-string hex-string t nil :start next1)
+			 (setf next1 next)
+			 (read-from-string (format nil "#x~d" hex ))))))
+    (make-array (length to-hex)
+		:element-type '(unsigned-byte 8)
+		:initial-contents to-hex)))
+
+
+
+(defun WriteSysex (pms when sysex-unsigned)
+  (cffi:with-pointer-to-vector-data  (ptr sysex-unsigned )
+   (pm-write-sys-ex pms when ptr)))
 
 ;;; porttime.h
 
