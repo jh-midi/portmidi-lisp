@@ -17,7 +17,9 @@ CL-USER> (load "cffi-portmidi3.lisp")
 CL-USER> (in-package :portmidi)
 
 CL-USER> (in-package :portmidi)
+
 #<PACKAGE "PORTMIDI">
+
 PM> (getDeviceInfo)
 
 ((:ID 0 :NAME "Midi Through Port-0" :TYPE :OUTPUT :OPEN T)
