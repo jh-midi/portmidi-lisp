@@ -14,7 +14,7 @@ Work in progress ... adding writesysex
 
 CL-USER> (load "cffi-portmidi3.lisp")<br>
 CL-USER> (in-package :portmidi) <br>
-<font color="red">#<PACKAGE "PORTMIDI"><br></font>
+#<PACKAGE "PORTMIDI"><br>
 PM> (getDeviceInfo)<br>
 
 ((:ID 0 :NAME "Midi Through Port-0" :TYPE :OUTPUT :OPEN T)<br>
