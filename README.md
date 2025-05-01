@@ -8,6 +8,7 @@ and also install quicklisp https://www.quicklisp.org/beta/  this is the simplest
 
 I have just tested on sbcl but this should work with all Lisp implementation with CFFI port.
 
+you have to look at the official portmidi doc
 
 Work in progress ... adding writesysex
 
@@ -17,3 +18,13 @@ Work in progress ... adding writesysex
 
 (getDeviceInfo)
  ...
+((:ID 0 :NAME "Midi Through Port-0" :TYPE :OUTPUT :OPEN T)
+ (:ID 1 :NAME "Midi Through Port-0" :TYPE :INPUT :OPEN NIL))
+
+PM> (defparameter mout (openoutput 0 100 0))
+
+(defparameter syx  (string-to-sysex  "F0 00 21 F7"))
+
+(writeSysex mout 0 syx)
+
+(writesysex mout 0 (list-to-sysex '(#xF0 #x12 #xF7)))
