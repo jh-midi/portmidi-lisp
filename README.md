@@ -12,19 +12,21 @@ you have to look at the official portmidi doc
 
 Work in progress ... adding writesysex
 
-(load "cffi-portmidi3.lisp")
+CL-USER> (load "cffi-portmidi3.lisp")
 
-(in-package :portmidi)
+CL-USER> (in-package :portmidi)
 
-(getDeviceInfo)
- ...
+CL-USER> (in-package :portmidi)
+#<PACKAGE "PORTMIDI">
+PM> (getDeviceInfo)
+
 ((:ID 0 :NAME "Midi Through Port-0" :TYPE :OUTPUT :OPEN T)
  (:ID 1 :NAME "Midi Through Port-0" :TYPE :INPUT :OPEN NIL))
 
 PM> (defparameter midi-out (openoutput 0 100 0))
 
-(defparameter syx  (string-to-sysex  "F0 00 21 F7"))
+PM> (defparameter syx  (string-to-sysex  "F0 00 21 F7"))
 
-(writeSysex midi-out 0 syx)
+PM> (writeSysex midi-out 0 syx)
 
-(writesysex midi-out 0 (list-to-sysex '(#xF0 #x12 #xF7)))
+PM> (writesysex midi-out 0 (list-to-sysex '(#xF0 #x12 #xF7)))
