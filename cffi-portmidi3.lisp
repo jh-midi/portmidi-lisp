@@ -412,6 +412,10 @@
 		:element-type '(unsigned-byte 8)
 		:initial-contents to-hex)))
 
+(defun list-to-sysex (sysex-list)
+  (make-array (length sysex-list)
+		:element-type '(unsigned-byte 8)
+		:initial-contents sysex-list))
 
 
 (defun WriteSysex (pms when sysex-unsigned)
