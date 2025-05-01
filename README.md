@@ -21,10 +21,10 @@ Work in progress ... adding writesysex
 ((:ID 0 :NAME "Midi Through Port-0" :TYPE :OUTPUT :OPEN T)
  (:ID 1 :NAME "Midi Through Port-0" :TYPE :INPUT :OPEN NIL))
 
-PM> (defparameter mout (openoutput 0 100 0))
+PM> (defparameter midi-out (openoutput 0 100 0))
 
 (defparameter syx  (string-to-sysex  "F0 00 21 F7"))
 
-(writeSysex mout 0 syx)
+(writeSysex midi-out 0 syx)
 
-(writesysex mout 0 (list-to-sysex '(#xF0 #x12 #xF7)))
+(writesysex midi-out 0 (list-to-sysex '(#xF0 #x12 #xF7)))
